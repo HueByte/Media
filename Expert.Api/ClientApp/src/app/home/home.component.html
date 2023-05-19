@@ -1,0 +1,52 @@
+<div class="flex h-full w-full justify-center">
+  <div
+    class="my-4 flex min-h-[50%] w-[1024px] flex-row rounded-xl bg-slate-600"
+  >
+    <div class="w-1/6 rounded-l-xl bg-slate-500">
+      <div
+        class="flex flex-col gap-2 overflow-y-auto p-2"
+        *ngFor="let catalog of data"
+      >
+        <div class="truncate rounded bg-red-400 p-2">{{ catalog.name }}</div>
+        <!-- <ng-container *ngFor="let index of [].constructor(15); let i = index">
+          <div class="truncate rounded bg-red-400 p-2">Item</div>
+        </ng-container> -->
+      </div>
+    </div>
+    <div class="w-full overflow-y-auto p-2">
+      <div class="mb-2 flex w-full justify-end">
+        <button class="self-end rounded bg-lime-500 px-2 py-1 text-lg">
+          Add Product
+        </button>
+      </div>
+      <table class="min-w-full text-left text-sm font-light">
+        <thead
+          class="sticky top-0 border-b bg-black font-medium dark:border-neutral-500"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-4">#</th>
+            <th scope="col" class="px-6 py-4">Heading</th>
+            <th scope="col" class="px-6 py-4">Heading</th>
+            <th scope="col" class="px-6 py-4">Heading</th>
+            <th scope="col" class="px-6 py-4">Heading</th>
+            <th scope="col" class="px-6 py-4">Heading</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let index of [].constructor(15); let i = index">
+            <tr class="border-b dark:border-neutral-500">
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                {{ i + 1 }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
