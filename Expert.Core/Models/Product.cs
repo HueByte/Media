@@ -19,6 +19,5 @@ namespace Expert.Core.Models
 
         public int CatalogId { get; set; }
         public Catalog Catalog { get; set; } = default!;
-
     }
 }

@@ -72,9 +72,12 @@ namespace Expert.Core.Services.Product
                 Description = product.Description,
                 Price = product.Price,
                 Catalog = catalog,
+                CatalogId = catalog.Id
             };
 
-            catalog.Products?.Add(productToAdd);
+            catalog.Products ??= new List<Core.Models.Product>();   
+
+            catalog.Products.Add(productToAdd);
             await _catalogService.UpdateCatalogProductsAsync(catalog);
         }
     }
