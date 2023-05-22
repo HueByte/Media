@@ -1,0 +1,42 @@
+<div className="relative overflow-auto rounded-lg shadow-md">
+  <table class="w-full border-collapse text-left text-sm text-accent">
+    <thead class="bg-backgroundColorLight text-base uppercase text-accent">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          Name
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Code
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Price
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Description
+        </th>
+        <th scope="col" class=" px-6 py-3">
+          ID
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let product of data.products">
+        <tr scope="row"
+          class="cursor-pointer whitespace-nowrap px-6 py-4 text-white font-medium transition duration-300 even:bg-backgroundColorLight hover:bg-accent4">
+
+          <td class="flex flex-row items-center px-6 py-4 font-bold">
+            <span>
+              <i class="fa-regular fa-file mr-1"></i> {{product.name}}
+            </span>
+          </td>
+          <td class="px-6 py-4">
+            {{product.code}}
+          </td>
+          <td class="px-6 py-4">{{product.price}}</td>
+          <td class="px-6 py-4">{{product.description}}</td>
+          <td class="px-6 py-4">{{product.id}}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

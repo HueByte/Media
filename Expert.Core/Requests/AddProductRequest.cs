@@ -6,6 +6,6 @@
         public string Code { get; set; } = default!;
         public string? Description { get; set; }
         public decimal Price { get; set; } = default!;
-        public int CategoryId { get; set; }
+        public int CatalogId { get; set; }
     }
 }

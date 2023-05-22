@@ -7,18 +7,24 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { ProductsComponent } from './products/products.component';
+import { AddProductComponent } from './home/components/addProductComponent/add-product.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
+    ProductsComponent,
+    AddProductComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatDialogModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
@@ -26,13 +32,14 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
       {
         path: '',
         component: HomeComponent,
-        pathMatch: 'full',
-        children: [{ path: 'catalog/:catalogId' }],
+        children: [
+          { path: 'catalog/:catalogId', component: ProductsComponent },
+        ],
       },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
     ]),
   ],
+  exports: [MatDialogModule],
+  entryComponents: [AddProductComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

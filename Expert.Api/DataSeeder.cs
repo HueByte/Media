@@ -1,4 +1,5 @@
 ﻿using Expert.Core.Interfaces.IRepositories;
+using Expert.Core.Models;
 using Expert.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,30 +19,43 @@ namespace Expert.Api
         {
             var catalogRepo = scope.ServiceProvider.GetRequiredService<ICatalogsRepository>();
 
-            List<Core.Models.Catalog> catalogs = new() 
+            Random rnd = new();
+            
+            // generate random amount of catalogs
+            int catCount = rnd.Next(3, 10);
+
+            var seedProducts = new List<List<Product>>();
+            for (int z = 0; z < catCount; z++)
             {
-                new Core.Models.Catalog()
+                List<Product> products = new();
+                for (int i = 0; i < rnd.Next(4, 32); i++)
                 {
-                    Description = "Testing Catalog 1",
-                    Name = "Catalog 1",
-                    Products = new List<Core.Models.Product>()
+                    products.Add(new Product()
                     {
-                        new Core.Models.Product()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            Name = "test",
-                            Code = "AA00",
-                            Description = "test des",
-                            Price = 40.99m,
-                        }
-                    }
-                },
-                new Core.Models.Catalog()
-                {
-                    Description = "Testing Catalog 2",
-                    Name = "Catalog 2",
+                        Id = Guid.NewGuid().ToString(),
+                        Name = $"test {i}",
+                        Code = $"AA0-[{i}]",
+                        Description = $"test des {i}",
+                        Price = rnd.Next(0, 400) + Math.Round(new decimal(rnd.NextDouble()), 2),
+                    });
                 }
-            };
+
+                seedProducts.Add(products);
+            }
+
+            List<Core.Models.Catalog> catalogs = new();
+
+            foreach((var products, var index) in seedProducts.Select((item, index) => (item,index)))
+            {
+                Catalog cat = new Catalog()
+                {
+                    Description = $"Testing Catalog {index}",
+                    Name = $"Catalog {index}",
+                    Products = products
+                };
+
+                catalogs.Add(cat);
+            }
 
             await catalogRepo.AddRangeAsync(catalogs);
             await catalogRepo.SaveChangesAsync();

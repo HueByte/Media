@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Add New Product</h1>
+<div mat-dialog-content>
+  <h2 class="text-xl font-bold mb-4">Category ID: {{data.catalogId}}</h2>
+  <mat-form-field class="w-full">
+    <input matInput placeholder="Name" [(ngModel)]="newProduct.name" />
+  </mat-form-field>
+  <mat-form-field class="w-full">
+    <input matInput placeholder="Code" [(ngModel)]="newProduct.code" />
+  </mat-form-field>
+  <mat-form-field class="w-full">
+    <input matInput placeholder="Price" type="number" [(ngModel)]="newProduct.price" />
+  </mat-form-field>
+  <mat-form-field class="w-full">
+    <textarea matInput placeholder="Description" [(ngModel)]="newProduct.description"></textarea>
+  </mat-form-field>
+  <div *ngIf="isError" class="text-red-500 mb-4">{{ error }}</div>
+  <div mat-dialog-actions class="flex justify-end gap-2">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="data" (click)="addProduct()"
+      cdkFocusInitial>Save</button>
+  </div>
+</div>

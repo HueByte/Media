@@ -29,7 +29,7 @@ namespace Expert.Core.Services.Catalog
 
         public Task<Core.Models.Catalog?> GetCatalogByIdAsync(int id)
         {
-            if (id <= 0)
+            if (id < 0)
             {
                 throw new System.ArgumentOutOfRangeException(nameof(id), "id property cannot be less than or equal to zero");
             }

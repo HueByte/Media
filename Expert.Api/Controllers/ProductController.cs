@@ -11,7 +11,7 @@ namespace Expert.Api.Controllers
     {
         private readonly IProductService _productService;
         public ProductController(IProductService productService) 
-        { 
+        {   
             _productService = productService;
         }
 
@@ -48,7 +48,7 @@ namespace Expert.Api.Controllers
                 Price = request.Price,
             };
 
-            await _productService.AddProductAsync(request.CategoryId, productDto);
+            await _productService.AddProductAsync(request.CatalogId, productDto);
 
             return Ok();
         }
